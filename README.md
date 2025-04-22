@@ -1,6 +1,7 @@
 # scyllaDB-YCSB
-TEst repository for scyllaDB on YCSB workloads
+Test repository for scyllaDB on YCSB workloads
 Repo install: curl -sSf get.scylladb.com/server | sudo bash
+
 Docker Setup as docker needed for running ScyllaDB instance:
 # Add Docker's official GPG key:
 sudo apt-get update
@@ -20,8 +21,20 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 sudo docker run hello-world
 
+Download image of ScyllaDB
+sudo docker pull scylladb/scylla
 
-ScyllaDB test:
-curl -sSf get.scylladb.com/server | sudo bash
-ScyllaDb status:
+To start a one-node ScyllaDB instance:
+sudo docker run --name scylla -d scylladb/scylla
+
+To list all Docker containers running:
+sudo docker ps
+
+To close a docker container 
+sudo docker stop scylla
+
+ScyllaDB installation command:
+sudo curl -sSf get.scylladb.com/server | sudo bash
+
+ScyllaDb status: To verify that the cluster is up and running:
 sudo docker exec -it scylla nodetool status
