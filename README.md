@@ -27,8 +27,13 @@ sudo docker pull scylladb/scylla
 To start a one-node ScyllaDB instance:
 sudo docker run --name scylla -d scylladb/scylla
 
+sudo docker run --name scylla -d -p 9042:9042 scylladb/scylla
+
 To list all Docker containers running:
-sudo docker ps
+sudo docker ps -a
+
+To remove a Docker container:
+sudo docker rm scylla
 
 To close a docker container 
 sudo docker stop scylla
