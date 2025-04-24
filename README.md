@@ -43,3 +43,17 @@ sudo curl -sSf get.scylladb.com/server | sudo bash
 
 ScyllaDb status: To verify that the cluster is up and running:
 sudo docker exec -it scylla nodetool status
+
+TODO Tasks:
+ScyllaDB compaction strategies experiments
+Use cassandra-stress package to stress test on different read/write/read-write mix workloads
+Use perfstat, nodetool , vmstat to analyze
+Test against YCSB workloads.
+
+References: 
+Cassandra paper: https://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf
+Cassandra stress: https://cassandra.apache.org/doc/stable/cassandra/tools/cassandra_stress.html
+Cassandra vs ScyllaDb for IOT workloads: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7945437
+Interview Radio with CTO of ScyllaDB: https://www.computer.org/csdl/magazine/so/2019/04/08738153/1aW6mIzPvos
+White paper Design COnsiderations: ScyllaDB : https://toidiu.com/reads/Building_the_Real-Time_Big_Data_Database-_Seven_Design_Principles_behind_Scylla.pdf
+ScyllaDB architecture: https://docs.scylladb.com/manual/stable/architecture/index.html
