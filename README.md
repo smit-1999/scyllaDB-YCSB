@@ -60,7 +60,6 @@ SELECT * FROM usertable LIMIT 10;
 
 
 TODO Tasks:
-Run ScyllaDB on 4 nodes
 ScyllaDB compaction strategies experiments
 Use cassandra-stress package to stress test on different read/write/read-write mix workloads
 Use perfstat, nodetool , vmstat to analyze
@@ -73,3 +72,7 @@ Cassandra vs ScyllaDb for IOT workloads: https://ieeexplore.ieee.org/stamp/stamp
 Interview Radio with CTO of ScyllaDB: https://www.computer.org/csdl/magazine/so/2019/04/08738153/1aW6mIzPvos
 White paper Design COnsiderations: ScyllaDB : https://toidiu.com/reads/Building_the_Real-Time_Big_Data_Database-_Seven_Design_Principles_behind_Scylla.pdf
 ScyllaDB architecture: https://docs.scylladb.com/manual/stable/architecture/index.html
+
+ScyllaDB Compaction Strategy in Practice usig cqlsh:  https://opensource.docs.scylladb.com/stable/cql/ddl.html#create-table-statement
+https://opensource.docs.scylladb.com/stable/cql/compaction.html
+ScyllaDB Configuration files : https://opensource.docs.scylladb.com/stable/operating-scylla/admin.html
