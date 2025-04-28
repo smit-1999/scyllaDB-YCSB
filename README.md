@@ -52,6 +52,13 @@ To check status of scylladb cluster: sudo docker exec -it some-scylla nodetool s
 sudo usermod -aG docker smitshah
 Add the user to the docker group
 
+Check existing records in a node of cluster!
+docker exec -it some-scylla bash
+cqlsh
+USE ycsb;
+SELECT * FROM usertable LIMIT 10;
+
+
 TODO Tasks:
 Run ScyllaDB on 4 nodes
 ScyllaDB compaction strategies experiments

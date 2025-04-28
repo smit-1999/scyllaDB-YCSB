@@ -2,9 +2,29 @@ import uuid
 from cassandra.cluster import Cluster
 import random
 import time
+import docker
+from cassandra.cluster import Cluster
 
-cluster = Cluster(['localhost'])
+def get_container_ips(container_names):
+    client = docker.from_env()
+    ips = []
+    for name in container_names:
+        try:
+            container = client.containers.get(name)
+            ip_address = container.attrs['NetworkSettings']['IPAddress']
+            ips.append(ip_address)
+        except docker.errors.NotFound:
+            print(f"❌ Container {name} not found.")
+    return ips
+
+# Get IPs of running containers
+container_names = ['some-scylla', 'some-scylla2']
+node_ips = get_container_ips(container_names)
+
+# Connect to the cluster
+cluster = Cluster(node_ips)
 session = cluster.connect()
+
 
 session.execute("""
     CREATE KEYSPACE IF NOT EXISTS ycsb
