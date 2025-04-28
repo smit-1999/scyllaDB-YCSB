@@ -44,7 +44,16 @@ sudo curl -sSf get.scylladb.com/server | sudo bash
 ScyllaDb status: To verify that the cluster is up and running:
 sudo docker exec -it scylla nodetool status
 
+Run ScyllaDB on one node and then for running on second node in cluster run
+sudo docker run --name some-scylla -d scylladb/scylla - run on first node
+sudo docker run --name some-scylla2 -d scylladb/scylla --seeds="$(sudo docker inspect --format='{{ .NetworkSettings.IPAddress }}' some-scylla)" - run on second node
+To check status of scylladb cluster: sudo docker exec -it some-scylla nodetool status
+
+sudo usermod -aG docker smitshah
+Add the user to the docker group
+
 TODO Tasks:
+Run ScyllaDB on 4 nodes
 ScyllaDB compaction strategies experiments
 Use cassandra-stress package to stress test on different read/write/read-write mix workloads
 Use perfstat, nodetool , vmstat to analyze
