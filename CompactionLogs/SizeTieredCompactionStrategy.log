@@ -1,0 +1,77 @@
+Executing:
+
+        CREATE TABLE IF NOT EXISTS usertable (
+            y_id text PRIMARY KEY,
+            field0 text
+        )
+     WITH compaction = {'class': 'SizeTieredCompactionStrategy'}
+
+Inserted 0 ops in 0.00 seconds
+Inserted 1000 ops in 1.28 seconds
+Inserted 2000 ops in 2.51 seconds
+Inserted 3000 ops in 3.76 seconds
+Inserted 4000 ops in 5.02 seconds
+Inserted 5000 ops in 6.25 seconds
+Inserted 6000 ops in 7.44 seconds
+Inserted 7000 ops in 8.70 seconds
+Inserted 8000 ops in 9.97 seconds
+Inserted 9000 ops in 11.25 seconds
+Inserted 10000 ops in 12.52 seconds
+Inserted 11000 ops in 13.76 seconds
+Inserted 12000 ops in 15.03 seconds
+Inserted 13000 ops in 16.32 seconds
+Inserted 14000 ops in 17.52 seconds
+Inserted 15000 ops in 18.76 seconds
+Inserted 16000 ops in 20.06 seconds
+Inserted 17000 ops in 21.33 seconds
+Inserted 18000 ops in 22.53 seconds
+Inserted 19000 ops in 23.77 seconds
+Inserted 20000 ops in 25.06 seconds
+Inserted 21000 ops in 26.35 seconds
+Inserted 22000 ops in 27.62 seconds
+Inserted 23000 ops in 28.84 seconds
+Inserted 24000 ops in 30.12 seconds
+Inserted 25000 ops in 31.40 seconds
+Inserted 26000 ops in 32.69 seconds
+Inserted 27000 ops in 33.91 seconds
+Inserted 28000 ops in 35.14 seconds
+Inserted 29000 ops in 36.37 seconds
+Inserted 30000 ops in 37.64 seconds
+Inserted 31000 ops in 38.87 seconds
+Inserted 32000 ops in 40.14 seconds
+Inserted 33000 ops in 41.39 seconds
+Inserted 34000 ops in 42.69 seconds
+Inserted 35000 ops in 43.96 seconds
+Inserted 36000 ops in 45.22 seconds
+Inserted 37000 ops in 46.51 seconds
+Inserted 38000 ops in 47.77 seconds
+Inserted 39000 ops in 49.05 seconds
+Inserted 40000 ops in 50.34 seconds
+Inserted 41000 ops in 51.62 seconds
+Inserted 42000 ops in 52.88 seconds
+Inserted 43000 ops in 54.12 seconds
+Inserted 44000 ops in 55.36 seconds
+Inserted 45000 ops in 56.58 seconds
+Inserted 46000 ops in 57.86 seconds
+Inserted 47000 ops in 59.14 seconds
+Inserted 48000 ops in 60.43 seconds
+Inserted 49000 ops in 61.71 seconds
+Executed 50000 ops in 62.96 seconds
+Executed 0 ops in 0.00 seconds
+Executed 1000 ops in 1.44 seconds
+Executed 2000 ops in 2.93 seconds
+Executed 3000 ops in 4.40 seconds
+Executed 4000 ops in 5.86 seconds
+Executed 5000 ops in 7.32 seconds
+Executed 6000 ops in 8.77 seconds
+Executed 7000 ops in 10.26 seconds
+Executed 8000 ops in 11.74 seconds
+Executed 9000 ops in 13.16 seconds
+Executed 10000 ops in 14.62 seconds
+
+Verifying stored records...
+✅ Found entry: y_id = 772fd9cc-7c95-4b7d-b94e-b8644b25de1b, field0 = value_772fd9cc-7c95-4b7d-b94e-b8644b25de1b
+✅ Found entry: y_id = 45e2b392-66e4-47f2-9620-6cc249606196, field0 = value_45e2b392-66e4-47f2-9620-6cc249606196
+✅ Found entry: y_id = 81e3f452-ace7-4a82-8690-b66c71851dab, field0 = value_81e3f452-ace7-4a82-8690-b66c71851dab
+✅ Found entry: y_id = e8aa070d-50d4-4a3c-9494-84fc0e8a3357, field0 = value_e8aa070d-50d4-4a3c-9494-84fc0e8a3357
+✅ Found entry: y_id = 55af7ca6-544d-47b5-80a0-3192917863b4, field0 = value_55af7ca6-544d-47b5-80a0-3192917863b4

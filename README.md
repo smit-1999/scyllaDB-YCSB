@@ -49,6 +49,9 @@ sudo docker run --name some-scylla -d scylladb/scylla - run on first node
 sudo docker run --name some-scylla2 -d scylladb/scylla --seeds="$(sudo docker inspect --format='{{ .NetworkSettings.IPAddress }}' some-scylla)" - run on second node
 To check status of scylladb cluster: sudo docker exec -it some-scylla nodetool status
 
+Run first 2 docker containers and then run main.py using this in background:
+sudo python3 main.py --containers some-scylla some-scylla2 &>withoutcomapction-5m-inserts-1mops.txt &
+
 sudo usermod -aG docker smitshah
 Add the user to the docker group
 
@@ -64,6 +67,50 @@ ScyllaDB compaction strategies experiments
 Use cassandra-stress package to stress test on different read/write/read-write mix workloads
 Use perfstat, nodetool , vmstat to analyze
 Test against YCSB workloads.
+
+
+## Performance Analysis:
+Run on the following workloads:
+Read 50% Update 50%
+Read 100%
+Write 100%
+Update 100%
+
+All ycsb workloads except Scan.
+
+totalOps:       1K, 10K, 100K 
+totalUniqueKeys:10K, 100K
+number of nodes: 1,3,5
+compaction: 'SizeTieredCompactionStrategy', 'LeveledCompactionStrategy', 'IncrementalCompactionStrategy' (Only for enterprise versions), 'TimeWindowCompactionStragety'
+
+## Things to be passed as arguments to the client:
+insert_keys_count = 50000
+total_ops = 10000
+compaction
+  
+    if compaction == 'SizeTieredCompactionStrategy':
+        compaction_settings = {
+            'class': compaction,
+            'bucket_high': factor,
+            'bucket_low': factor,
+            'min_sstable_size': min_sstable_size,
+            'min_threshold': num_sstables,
+            'max_threshold': num_sstables
+        }
+    elif compaction == 'LeveledCompactionStrategy':
+        {
+        'class' : 'LeveledCompactionStrategy',
+        'sstable_size_in_mb' : int}
+        
+    elif compaction == 'TimeWindowCompactionStragety':
+      {
+  'class' : 'TimeWindowCompactionStrategy',
+  'compaction_window_unit' : string,
+  'compaction_window_size' : int,
+  'expired_sstable_check_frequency_seconds' : int,
+  'min_threshold' : num_sstables,
+  'max_threshold' : num_sstables}
+
 
 References: 
 Cassandra paper: https://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf
