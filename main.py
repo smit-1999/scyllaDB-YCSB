@@ -7,11 +7,7 @@ from db import *
 from cluster import *
 import argparse
 
-insert_keys_count = 50000
-total_ops = 10000
-
-
-def main(container_names, compaction):
+def main(container_names, compaction_settings, insert_keys_count, total_ops):
     # Get IPs of running containers
     # container_names = ['some-scylla-with-compaction', 'some-scylla2-with-compaction']
     node_ips = get_container_ips(container_names)
@@ -34,9 +30,7 @@ def main(container_names, compaction):
         )
     """
 
-    if compaction:
-        compaction_json = f"{{'class': '{compaction}'}}"
-        create_table_query += f" WITH compaction = {compaction_json}"
+    create_table_query += f" WITH compaction = {compaction_settings}"
 
     print(f"Executing:\n{create_table_query}\n")
     session.execute(create_table_query)
@@ -100,9 +94,57 @@ if __name__ == "__main__":
         "--compaction",
         type=str,
         default=None,
-        help="Compaction strategy to use, e.g., \"{'class': 'LeveledCompactionStrategy'}\" (default: no compaction)",
+        help="Compaction strategy to use (SizeTieredCompactionStrategy, LeveledCompactionStrategy, TimeWindowCompactionStrategy)",
     )
+
+    parser.add_argument("--insert_keys_count", type=int, default=50000, help="Number of keys to insert")
+    parser.add_argument("--total_ops", type=int, default=10000, help="Total number of operations")
+
+    # SizeTiered settings
+    parser.add_argument("--bucket_high", type=float, default=1.5)
+    parser.add_argument("--bucket_low", type=float, default=0.5)
+    parser.add_argument("--min_sstable_size", type=int, default=50)
+    parser.add_argument("--num_sstables", type=int, default=4)
+
+    # Leveled settings
+    parser.add_argument("--sstable_size_in_mb", type=int, default=160)
+
+    # TimeWindow settings
+    parser.add_argument("--compaction_window_unit", type=str, default="DAYS")
+    parser.add_argument("--compaction_window_size", type=int, default=1)
+    parser.add_argument("--expired_sstable_check_frequency_seconds", type=int, default=60)
 
     args = parser.parse_args()
 
-    main(args.containers, args.compaction)
+    # Construct compaction settings
+    compaction_settings = None
+    if args.compaction == "SizeTieredCompactionStrategy":
+        compaction_settings = {
+            "class": args.compaction,
+            "bucket_high": args.bucket_high,
+            "bucket_low": args.bucket_low,
+            "min_sstable_size": args.min_sstable_size,
+            "min_threshold": args.num_sstables,
+            "max_threshold": args.num_sstables,
+        }
+    elif args.compaction == "LeveledCompactionStrategy":
+        compaction_settings = {
+            "class": args.compaction,
+            "sstable_size_in_mb": args.sstable_size_in_mb,
+        }
+    elif args.compaction == "TimeWindowCompactionStrategy":
+        compaction_settings = {
+            "class": args.compaction,
+            "compaction_window_unit": args.compaction_window_unit,
+            "compaction_window_size": args.compaction_window_size,
+            "expired_sstable_check_frequency_seconds": args.expired_sstable_check_frequency_seconds,
+            "min_threshold": args.num_sstables,
+            "max_threshold": args.num_sstables,
+        }
+
+    main(
+        container_names=args.containers,
+        compaction_settings=compaction_settings,
+        insert_keys_count=args.insert_keys_count,
+        total_ops=args.total_ops,
+    )
