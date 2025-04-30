@@ -93,7 +93,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--compaction",
         type=str,
-        default=None,
+        default="SizeTieredCompactionStrategy",
         help="Compaction strategy to use (SizeTieredCompactionStrategy, LeveledCompactionStrategy, TimeWindowCompactionStrategy)",
     )
 
@@ -141,6 +141,9 @@ if __name__ == "__main__":
             "min_threshold": args.num_sstables,
             "max_threshold": args.num_sstables,
         }
+    else:
+        print(f"Unknown compaction strategy: {args.compaction}")
+        exit(1)
 
     main(
         container_names=args.containers,

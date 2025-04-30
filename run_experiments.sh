@@ -2,10 +2,10 @@
 set -e
 
 # Define experiment parameters
-OPS_LIST=("1000" "10000" "100000")
+OPS_LIST=("10000" "100000")
 KEYS_LIST=("10000" "100000")
 NODE_COUNTS=("1" "2")
-COMPACTIONS=("SizeTieredCompactionStrategy" "LeveledCompactionStrategy" "TimeWindowCompactionStragety")
+COMPACTIONS=("SizeTieredCompactionStrategy" "LeveledCompactionStrategy" "TimeWindowCompactionStrategy")
 LOG_DIR="./CompactionLogs"
 
 mkdir -p "$LOG_DIR"
