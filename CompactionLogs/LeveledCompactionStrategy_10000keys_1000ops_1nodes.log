@@ -1,0 +1,28 @@
+Executing:
+
+        CREATE TABLE IF NOT EXISTS usertable (
+            y_id text PRIMARY KEY,
+            field0 text
+        )
+     WITH compaction = {'class': 'LeveledCompactionStrategy', 'sstable_size_in_mb': 160}
+
+Inserted 0 ops in 0.00 seconds
+Inserted 1000 ops in 1.03 seconds
+Inserted 2000 ops in 2.12 seconds
+Inserted 3000 ops in 3.18 seconds
+Inserted 4000 ops in 4.27 seconds
+Inserted 5000 ops in 5.30 seconds
+Inserted 6000 ops in 6.42 seconds
+Inserted 7000 ops in 7.47 seconds
+Inserted 8000 ops in 8.55 seconds
+Inserted 9000 ops in 9.66 seconds
+Executed 10000 ops in 10.69 seconds
+Executed 0 ops in 0.00 seconds
+Executed 1000 ops in 1.24 seconds
+
+Verifying stored records...
+✅ Found entry: y_id = a15e39f4-3661-4b7f-8c82-4dfc3dd7ab27, field0 = value_a15e39f4-3661-4b7f-8c82-4dfc3dd7ab27
+✅ Found entry: y_id = e6a94e01-bb09-41ac-b351-9d388020142d, field0 = value_e6a94e01-bb09-41ac-b351-9d388020142d
+✅ Found entry: y_id = 2f17c83d-1bb1-47db-8aeb-fa38e226447c, field0 = value_2f17c83d-1bb1-47db-8aeb-fa38e226447c
+✅ Found entry: y_id = 606482ae-9241-4f70-95c9-e3b77d6363c0, field0 = value_606482ae-9241-4f70-95c9-e3b77d6363c0
+✅ Found entry: y_id = b559f549-6801-4812-b6e1-d19436ee4573, field0 = value_b559f549-6801-4812-b6e1-d19436ee4573

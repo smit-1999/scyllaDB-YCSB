@@ -1,0 +1,118 @@
+Executing:
+
+        CREATE TABLE IF NOT EXISTS usertable (
+            y_id text PRIMARY KEY,
+            field0 text
+        )
+     WITH compaction = {'class': 'LeveledCompactionStrategy', 'sstable_size_in_mb': 160}
+
+Inserted 0 ops in 0.00 seconds
+Inserted 1000 ops in 1.03 seconds
+Inserted 2000 ops in 2.07 seconds
+Inserted 3000 ops in 3.13 seconds
+Inserted 4000 ops in 4.17 seconds
+Inserted 5000 ops in 5.27 seconds
+Inserted 6000 ops in 6.32 seconds
+Inserted 7000 ops in 7.44 seconds
+Inserted 8000 ops in 8.50 seconds
+Inserted 9000 ops in 9.53 seconds
+Inserted 10000 ops in 10.57 seconds
+Inserted 11000 ops in 11.67 seconds
+Inserted 12000 ops in 12.75 seconds
+Inserted 13000 ops in 13.82 seconds
+Inserted 14000 ops in 14.89 seconds
+Inserted 15000 ops in 15.94 seconds
+Inserted 16000 ops in 16.96 seconds
+Inserted 17000 ops in 18.00 seconds
+Inserted 18000 ops in 19.09 seconds
+Inserted 19000 ops in 20.19 seconds
+Inserted 20000 ops in 21.30 seconds
+Inserted 21000 ops in 22.38 seconds
+Inserted 22000 ops in 23.43 seconds
+Inserted 23000 ops in 24.48 seconds
+Inserted 24000 ops in 25.51 seconds
+Inserted 25000 ops in 26.62 seconds
+Inserted 26000 ops in 27.73 seconds
+Inserted 27000 ops in 28.78 seconds
+Inserted 28000 ops in 29.78 seconds
+Inserted 29000 ops in 30.85 seconds
+Inserted 30000 ops in 31.94 seconds
+Inserted 31000 ops in 33.04 seconds
+Inserted 32000 ops in 34.11 seconds
+Inserted 33000 ops in 35.13 seconds
+Inserted 34000 ops in 36.16 seconds
+Inserted 35000 ops in 37.25 seconds
+Inserted 36000 ops in 38.35 seconds
+Inserted 37000 ops in 39.45 seconds
+Inserted 38000 ops in 40.52 seconds
+Inserted 39000 ops in 41.55 seconds
+Inserted 40000 ops in 42.59 seconds
+Inserted 41000 ops in 43.68 seconds
+Inserted 42000 ops in 44.76 seconds
+Inserted 43000 ops in 45.81 seconds
+Inserted 44000 ops in 46.89 seconds
+Inserted 45000 ops in 47.99 seconds
+Inserted 46000 ops in 49.02 seconds
+Inserted 47000 ops in 50.04 seconds
+Inserted 48000 ops in 51.05 seconds
+Inserted 49000 ops in 52.07 seconds
+Inserted 50000 ops in 53.09 seconds
+Inserted 51000 ops in 54.10 seconds
+Inserted 52000 ops in 55.12 seconds
+Inserted 53000 ops in 56.15 seconds
+Inserted 54000 ops in 57.16 seconds
+Inserted 55000 ops in 58.18 seconds
+Inserted 56000 ops in 59.21 seconds
+Inserted 57000 ops in 60.23 seconds
+Inserted 58000 ops in 61.33 seconds
+Inserted 59000 ops in 62.42 seconds
+Inserted 60000 ops in 63.51 seconds
+Inserted 61000 ops in 64.56 seconds
+Inserted 62000 ops in 65.59 seconds
+Inserted 63000 ops in 66.60 seconds
+Inserted 64000 ops in 67.62 seconds
+Inserted 65000 ops in 68.70 seconds
+Inserted 66000 ops in 69.79 seconds
+Inserted 67000 ops in 70.88 seconds
+Inserted 68000 ops in 71.97 seconds
+Inserted 69000 ops in 73.00 seconds
+Inserted 70000 ops in 74.03 seconds
+Inserted 71000 ops in 75.06 seconds
+Inserted 72000 ops in 76.08 seconds
+Inserted 73000 ops in 77.13 seconds
+Inserted 74000 ops in 78.16 seconds
+Inserted 75000 ops in 79.18 seconds
+Inserted 76000 ops in 80.17 seconds
+Inserted 77000 ops in 81.19 seconds
+Inserted 78000 ops in 82.19 seconds
+Inserted 79000 ops in 83.21 seconds
+Inserted 80000 ops in 84.22 seconds
+Inserted 81000 ops in 85.26 seconds
+Inserted 82000 ops in 86.29 seconds
+Inserted 83000 ops in 87.31 seconds
+Inserted 84000 ops in 88.32 seconds
+Inserted 85000 ops in 89.34 seconds
+Inserted 86000 ops in 90.37 seconds
+Inserted 87000 ops in 91.38 seconds
+Inserted 88000 ops in 92.41 seconds
+Inserted 89000 ops in 93.42 seconds
+Inserted 90000 ops in 94.44 seconds
+Inserted 91000 ops in 95.46 seconds
+Inserted 92000 ops in 96.50 seconds
+Inserted 93000 ops in 97.54 seconds
+Inserted 94000 ops in 98.54 seconds
+Inserted 95000 ops in 99.56 seconds
+Inserted 96000 ops in 100.60 seconds
+Inserted 97000 ops in 101.64 seconds
+Inserted 98000 ops in 102.65 seconds
+Inserted 99000 ops in 103.62 seconds
+Executed 100000 ops in 104.72 seconds
+Executed 0 ops in 0.00 seconds
+Executed 1000 ops in 1.28 seconds
+
+Verifying stored records...
+✅ Found entry: y_id = 81550f6c-314e-4dc0-bb74-d4a9a20cc0da, field0 = value_81550f6c-314e-4dc0-bb74-d4a9a20cc0da
+✅ Found entry: y_id = 6bac68b4-8ae5-49db-9feb-fa444e81c22b, field0 = value_6bac68b4-8ae5-49db-9feb-fa444e81c22b
+✅ Found entry: y_id = 4ff114d3-a453-44b8-9755-dde4912cc97f, field0 = value_4ff114d3-a453-44b8-9755-dde4912cc97f
+✅ Found entry: y_id = eb3bb7ae-4fe1-46f0-8058-3b4ae1832a00, field0 = value_eb3bb7ae-4fe1-46f0-8058-3b4ae1832a00
+✅ Found entry: y_id = 8d03c9ee-d4b3-4c80-9406-595afd81a1c2, field0 = value_8d03c9ee-d4b3-4c80-9406-595afd81a1c2

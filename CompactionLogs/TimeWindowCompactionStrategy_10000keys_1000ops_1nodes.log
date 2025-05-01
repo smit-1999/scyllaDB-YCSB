@@ -1,0 +1,28 @@
+Executing:
+
+        CREATE TABLE IF NOT EXISTS usertable (
+            y_id text PRIMARY KEY,
+            field0 text
+        )
+     WITH compaction = {'class': 'TimeWindowCompactionStrategy', 'compaction_window_unit': 'DAYS', 'compaction_window_size': 1, 'expired_sstable_check_frequency_seconds': 60, 'min_threshold': 4, 'max_threshold': 4}
+
+Inserted 0 ops in 0.00 seconds
+Inserted 1000 ops in 1.10 seconds
+Inserted 2000 ops in 2.20 seconds
+Inserted 3000 ops in 3.29 seconds
+Inserted 4000 ops in 4.39 seconds
+Inserted 5000 ops in 5.56 seconds
+Inserted 6000 ops in 6.65 seconds
+Inserted 7000 ops in 7.74 seconds
+Inserted 8000 ops in 8.79 seconds
+Inserted 9000 ops in 9.89 seconds
+Executed 10000 ops in 11.02 seconds
+Executed 0 ops in 0.00 seconds
+Executed 1000 ops in 1.31 seconds
+
+Verifying stored records...
+✅ Found entry: y_id = 87d9131d-b07f-4b78-bf86-effb78ec0452, field0 = value_87d9131d-b07f-4b78-bf86-effb78ec0452
+✅ Found entry: y_id = d2ab640d-edaf-4044-923e-846ba0657e0a, field0 = value_d2ab640d-edaf-4044-923e-846ba0657e0a
+✅ Found entry: y_id = 2d94bc1e-5cad-4aaa-aef9-36d4f9af838a, field0 = value_2d94bc1e-5cad-4aaa-aef9-36d4f9af838a
+✅ Found entry: y_id = 0f82b5c4-90c2-44d3-bdd6-7cec36737625, field0 = value_0f82b5c4-90c2-44d3-bdd6-7cec36737625
+✅ Found entry: y_id = bb08be85-65ba-471a-baa0-d874c5c8a52c, field0 = value_bb08be85-65ba-471a-baa0-d874c5c8a52c
