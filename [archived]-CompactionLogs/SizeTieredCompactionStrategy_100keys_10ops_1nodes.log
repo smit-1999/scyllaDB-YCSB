@@ -1,0 +1,19 @@
+Executing:
+
+        CREATE TABLE IF NOT EXISTS usertable (
+            y_id text PRIMARY KEY,
+            field0 text
+        )
+     WITH compaction = {'class': 'SizeTieredCompactionStrategy', 'bucket_high': 1.5, 'bucket_low': 0.5, 'min_sstable_size': 50, 'min_threshold': 4, 'max_threshold': 4}
+
+Inserted 0 ops in 0.00 seconds
+Executed 100 ops in 0.10 seconds
+Executed 0 ops in 0.00 seconds
+Executed 10 ops in 0.01 seconds
+
+Verifying stored records...
+✅ Found entry: y_id = 4e5b3b39-41db-494b-860a-67f069e566cf, field0 = value_4e5b3b39-41db-494b-860a-67f069e566cf
+✅ Found entry: y_id = 4eeb3dd4-6564-4d91-a481-e6eb358d5bf6, field0 = value_4eeb3dd4-6564-4d91-a481-e6eb358d5bf6
+✅ Found entry: y_id = 6b05cbf0-d460-44cb-b45b-9e6f6490db94, field0 = value_6b05cbf0-d460-44cb-b45b-9e6f6490db94
+✅ Found entry: y_id = 1e4c912d-5371-415c-b299-b8ebc6cb7464, field0 = value_1e4c912d-5371-415c-b299-b8ebc6cb7464
+✅ Found entry: y_id = d434d7c0-5e5c-4761-8d6e-a3efc130d25a, field0 = value_d434d7c0-5e5c-4761-8d6e-a3efc130d25a

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/users/smitshah/scyllaDB-YCSB/main.py", line 148, in <module>
+    main(
+  File "/users/smitshah/scyllaDB-YCSB/main.py", line 17, in main
+    session = cluster.connect()
+  File "cassandra/cluster.py", line 1717, in cassandra.cluster.Cluster.connect
+  File "cassandra/cluster.py", line 1753, in cassandra.cluster.Cluster.connect
+  File "cassandra/cluster.py", line 1740, in cassandra.cluster.Cluster.connect
+  File "cassandra/cluster.py", line 3543, in cassandra.cluster.ControlConnection.connect
+  File "cassandra/cluster.py", line 3588, in cassandra.cluster.ControlConnection._reconnect_internal
+cassandra.cluster.NoHostAvailable: ('Unable to connect to any servers', {'172.17.0.2:9042': ConnectionRefusedError(111, "Tried connecting to [('172.17.0.2', 9042)]. Last error: Connection refused")})
