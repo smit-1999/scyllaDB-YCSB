@@ -5,9 +5,10 @@ import time
 import docker
 from db import *
 from cluster import *
+from utils import *
 import argparse
 
-def main(container_names, compaction_settings, insert_keys_count, total_ops):
+def main(container_names, compaction_settings, insert_keys_count, total_ops, workload):
     # Get IPs of running containers
     # container_names = ['some-scylla-with-compaction', 'some-scylla2-with-compaction']
     node_ips = get_container_ips(container_names)
@@ -53,6 +54,19 @@ def main(container_names, compaction_settings, insert_keys_count, total_ops):
     # Run total_ops operations: 50% reads, 50% updates
 
     start = time.time()
+    if workload == "a":
+        workload_a(session, inserted_ids, total_ops, start)
+    elif workload == "b":
+        workload_b(session, inserted_ids, total_ops, start)
+    elif workload == "c":
+        workload_c(session, inserted_ids, total_ops, start)
+    elif workload == "d":
+        workload_d(session, inserted_ids, total_ops, start)
+    elif workload == "f":
+        workload_f(session, inserted_ids, total_ops, start)
+    else:
+        print(f"Unknown workload: {workload}")
+        exit(1)
 
     for i in range(total_ops):
         target_id = random.choice(inserted_ids)
@@ -113,6 +127,7 @@ if __name__ == "__main__":
     parser.add_argument("--compaction_window_unit", type=str, default="DAYS")
     parser.add_argument("--compaction_window_size", type=int, default=1)
     parser.add_argument("--expired_sstable_check_frequency_seconds", type=int, default=60)
+    parser.add_argument("--workload", type=str, default="a", help="YCSB workload type: a, b, c, d, f")
 
     args = parser.parse_args()
 
@@ -150,4 +165,5 @@ if __name__ == "__main__":
         compaction_settings=compaction_settings,
         insert_keys_count=args.insert_keys_count,
         total_ops=args.total_ops,
+        workload=args.workload
     )
