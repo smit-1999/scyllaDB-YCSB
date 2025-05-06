@@ -3,6 +3,7 @@ import re
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.ticker as ticker
 
 # Config
 LOG_DIR = "./CompactionLogs"
@@ -82,25 +83,68 @@ def plot_all(df):
     plt.xlabel("YCSB Workload")
     plt.legend(title="Compaction Strategy")
     plt.tight_layout()
-    plt.savefig(PLOT_DIR + "a.png")
+    plt.savefig(PLOT_DIR + "a3.png")
 
-    # 2. Impact of workload on execution time
-    plt.figure(figsize=(10, 6))
-    sns.boxplot(data=df, x="workload", y="time_taken_seconds")
-    plt.title("Impact of Workload on Execution Time")
-    plt.ylabel("Execution Time (s)")
-    plt.xlabel("YCSB Workload")
-    plt.tight_layout()
-    plt.savefig(PLOT_DIR + "b.png")
+    # # 2. Impact of workload on execution time
+    # plt.figure(figsize=(10, 6))
+    # sns.boxplot(data=df, x="workload", y="time_taken_seconds")
+    # plt.title("Impact of Workload on Execution Time")
+    # plt.ylabel("Execution Time (s)")
+    # plt.xlabel("YCSB Workload")
+    # plt.tight_layout()
+    # plt.savefig(PLOT_DIR + "b3.png")
 
-    # 4. Impact of node count on execution time
-    plt.figure(figsize=(10, 6))
-    sns.boxplot(data=df, x="nodes", y="time_taken_seconds", hue="strategy")
-    plt.title("Impact of Node Count on Execution Time (per Strategy)")
+    # # 4. Impact of node count on execution time
+    # plt.figure(figsize=(10, 6))
+    # sns.boxplot(data=df, x="nodes", y="time_taken_seconds", hue="strategy")
+    # plt.title("Impact of Node Count on Execution Time (per Strategy)")
+    # plt.ylabel("Execution Time (s)")
+    # plt.xlabel("Number of Nodes")
+    # plt.tight_layout()
+    # plt.savefig(PLOT_DIR + "d3.png")
+    # 2. Workload Impact – Separate subplots per node count (with independent Y scales)
+    node_counts = sorted(df['nodes'].unique())
+    fig, axes = plt.subplots(1, len(node_counts), figsize=(18, 6), sharey=False)
+
+    for i, node in enumerate(node_counts):
+        subset = df[df['nodes'] == node]
+        sns.boxplot(
+            data=subset,
+            x="workload",
+            y="time_taken_seconds",
+            ax=axes[i]
+        )
+        axes[i].set_title(f"{node} Nodes")
+        axes[i].set_xlabel("Workload")
+        axes[i].set_ylabel("Exec Time (s)")
+        axes[i].tick_params(axis='x', rotation=45)
+        axes[i].yaxis.set_major_locator(ticker.MaxNLocator(5))
+
+    plt.suptitle("Impact of Workload on Execution Time (per Node Count)", fontsize=16)
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.savefig(PLOT_DIR + "b3_workload_vs_nodes.png")
+    
+
+    # `4. Node Count Impact – Unified Lineplot with Strategy + Workload
+    df["strategy_workload"] = df["strategy"] + "-" + df["workload"]
+
+    plt.figure(figsize=(14, 7))
+    sns.lineplot(
+        data=df,
+        x="nodes",
+        y="time_taken_seconds",
+        hue="strategy_workload",
+        marker="o",
+        linewidth=2.0,
+        markersize=6
+    )
+    plt.title("Impact of Node Count on Execution Time (All Strategies and Workloads)")
     plt.ylabel("Execution Time (s)")
     plt.xlabel("Number of Nodes")
+    plt.legend(title="Strategy-Workload", bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.xticks(sorted(df["nodes"].unique()))
     plt.tight_layout()
-    plt.savefig(PLOT_DIR + "d.png")
+    plt.savefig(PLOT_DIR + "d3_nodes_vs_execution_combined.png")
 
 
 def main():
