@@ -40,6 +40,9 @@ stop-cluster num_nodes="3":
     ./justmod/stop_scylla.sh {{num_nodes}}
     @echo "ScyllaDB {{num_nodes}}-node cluster stopped."
 
+prune-docker-images:
+    chmod +x ./justmod/prune_docker_images.sh && \
+    ./justmod/prune_docker_images.sh
 
 start-client compaction_strategy="SizeTieredCompactionStrategy" compaction_log_dir="./CompactionLogs/" insert_keys_count="100" total_ops="10" containers="some-scylla" node_count="1" workload="a":
     @echo "Client started."
