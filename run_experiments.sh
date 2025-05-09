@@ -2,10 +2,10 @@
 set -e
 
 # Define experiment parameters
-OPS_LIST=("100")
-KEYS_LIST=("100")
-NODE_COUNTS=("1")
-COMPACTIONS=("SizeTieredCompactionStrategy")
+OPS_LIST=("100000" "1000000")
+KEYS_LIST=("10000" "100000")
+NODE_COUNTS=("1" "2" "3")
+COMPACTIONS=("SizeTieredCompactionStrategy" "LeveledCompactionStrategy" "TimeWindowCompactionStrategy")
 WORKLOADS=("a" "b" "c" "d" "f")
 LOG_DIR="./CompactionLogs"
 
@@ -47,6 +47,8 @@ for workload in "${WORKLOADS[@]}"; do
 
           echo "✅ Completed: Nodes=$nodes, Ops=$ops, Keys=$keys, Compaction=$strategy"
           echo ""
+
+          docker image prune -a -f
 
         done
       done
